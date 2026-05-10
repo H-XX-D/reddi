@@ -33,3 +33,10 @@ htmlcov/
 credentials.json
 *.token
 .env
+
+# Devvit companion app
+devvit/node_modules/
+devvit/dist/
+devvit/.devvit/
+devvit/build/
+devvit/*.log

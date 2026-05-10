@@ -45,6 +45,8 @@ def test_help_lists_every_v1_command() -> None:
         "history",
         "launch",
         "completion",
+        # v1.2 additions:
+        "devvit",
     ):
         assert cmd in result.output, f"command '{cmd}' missing from top-level help"
 
@@ -74,6 +76,13 @@ def test_each_command_help_loads() -> None:
         ["history", "--help"],
         ["launch", "--help"],
         ["completion", "--help"],
+        # v1.2:
+        ["devvit", "--help"],
+        ["devvit", "init", "--help"],
+        ["devvit", "dev", "--help"],
+        ["devvit", "upload", "--help"],
+        ["devvit", "playtest", "--help"],
+        ["devvit", "status", "--help"],
     ):
         result = runner.invoke(cli, cmd)
         assert result.exit_code == 0, f"--help failed for: {' '.join(cmd)}"
@@ -339,6 +348,35 @@ def test_launch_rejects_invalid_json(tmp_path) -> None:
     runner = CliRunner()
     result = runner.invoke(cli, ["launch", str(config), "--dry-run"])
     assert result.exit_code == 2
+
+
+def test_devvit_status_on_missing_project(tmp_path) -> None:
+    """`reddi devvit status --dir <empty>` should report no project."""
+    runner = CliRunner()
+    target = tmp_path / "devvit-empty"
+    # target doesn't exist
+    result = runner.invoke(cli, ["devvit", "--dir", str(target), "status"])
+    assert result.exit_code == 1
+    assert "no Devvit project" in result.output
+
+
+def test_devvit_status_on_real_looking_project(tmp_path) -> None:
+    """If a package.json is present, status reports the project as existing."""
+    target = tmp_path / "devvit-fake"
+    target.mkdir()
+    (target / "package.json").write_text('{"name": "test-app", "version": "0.1.0"}')
+    runner = CliRunner()
+    result = runner.invoke(cli, ["devvit", "--dir", str(target), "status"])
+    assert result.exit_code == 0
+    assert "test-app" in result.output
+
+
+def test_devvit_dev_rejects_missing_project(tmp_path) -> None:
+    """`reddi devvit dev` on a non-existent dir should fail with exit 2."""
+    runner = CliRunner()
+    result = runner.invoke(cli, ["devvit", "--dir", str(tmp_path / "missing"), "dev"])
+    assert result.exit_code == 2
+    assert "No Devvit project" in result.output
 
 
 def test_launch_resolves_body_file_relative_to_config(tmp_path) -> None:

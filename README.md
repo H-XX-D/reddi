@@ -216,6 +216,12 @@ reddi subs unsubscribe <name>   remove subscription
 reddi flairs <sub>         list available flair templates for a sub
 reddi launch <config>      multi-stage declarative launch orchestrator
 reddi completion <shell>   emit bash/zsh/fish completion script
+
+reddi devvit init          scaffold a Devvit project (Reddit's in-Reddit app platform)
+reddi devvit dev           run the Devvit dev server
+reddi devvit playtest <sub>  hot-reload to a real subreddit
+reddi devvit upload        publish to Reddit
+reddi devvit status        show Devvit project state
 ```
 
 Every command takes `--json` for scripting.
@@ -275,6 +281,29 @@ The v1.0 surface is stable: flag shapes and JSON keys won't change incompatibly 
 - **v1.2** — `mod` commands for subreddit moderators (approve, remove, distinguish, lock, sticky)
 - **v1.3** — TUI mode (`reddi tui`) for browsing
 - **v2.0** — Possible Go rewrite for single-binary distribution via Homebrew
+
+## Devvit companion (v1.2+)
+
+Reddit has two separate developer surfaces, and reddi now manages both:
+
+- **Classic OAuth API** (`/prefs/apps`) — what `reddi auth login` uses. External programs that talk to Reddit. The main reddi surface.
+- **Devvit** (`developers.reddit.com`) — TypeScript/React apps that run *inside* Reddit (custom posts, mod tools). Distinct auth, distinct deployment.
+
+`reddi devvit` wraps Reddit's Devvit CLI so both surfaces share one entry point. The Devvit project lives in a `devvit/` subfolder of your reddi checkout; the wrapper shells out to `npx devvit` and `npm` with the right cwd.
+
+Quickstart for a Devvit companion app:
+
+```sh
+# In your reddi checkout (or any other dir — use --dir to override)
+reddi devvit init                          # interactive; opens browser for auth
+reddi devvit init --token <devvit-token>   # alternative: use a code from developers.reddit.com/new
+reddi devvit status                        # confirm scaffolded
+reddi devvit dev                           # run the dev server
+reddi devvit playtest <your-test-sub>      # hot-reload to a real subreddit you mod
+reddi devvit upload                        # publish to Reddit
+```
+
+The Devvit project is independent code (TypeScript/React) — reddi just orchestrates it. You can have *both* an installed-app OAuth credential (`reddi auth login`) for the classic API surface AND a Devvit app for in-Reddit features, managed from the same CLI.
 
 ## Related projects
 

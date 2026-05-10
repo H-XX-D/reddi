@@ -2,6 +2,33 @@
 
 All notable changes to `reddi` are documented here. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and `reddi` adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.2.0] — 2026-05-10
+
+The "two surfaces, one CLI" release. reddi now bundles Devvit project management alongside its OAuth API surface, so all your Reddit-platform work lives under one entry point.
+
+### Added
+
+- **`reddi devvit`** command group — wrapper for Reddit's Devvit platform CLI (`npx devvit`). Subcommands:
+  - `reddi devvit init [--token TOKEN]` — scaffold a Devvit project into `./devvit/` (or `--dir`). Without a token, runs `npx devvit init` interactively. With a `--token` from <https://developers.reddit.com/new>, uses `npm create devvit@latest <token>` directly.
+  - `reddi devvit dev` — runs the Devvit dev server (`npm run dev`)
+  - `reddi devvit playtest [SUBREDDIT]` — Devvit's hot-reload-to-real-sub mode
+  - `reddi devvit upload` — publish the app to Reddit (`npx devvit upload`)
+  - `reddi devvit status` — show project state (exists / package.json / node_modules / version)
+- **`--dir PATH`** group-level flag — point at a non-default Devvit project location
+- `.gitignore` rules for `devvit/node_modules/`, `devvit/dist/`, `devvit/.devvit/`, `devvit/build/`
+
+### Why this exists
+
+Reddit has two completely separate developer surfaces:
+1. **Classic OAuth API** (`/prefs/apps`) — external programs that talk to Reddit. This is reddi's main domain.
+2. **Devvit** (`developers.reddit.com`) — apps that run inside Reddit (custom posts, mod tools). TypeScript/React, deployed to Reddit's infrastructure.
+
+A single user often wants both: classic OAuth for launch/monitor workflows, Devvit for in-Reddit features. reddi v1.2 makes reddi the unified entry point. The Python CLI and the Devvit project live in the same repo, managed by the same tool.
+
+### Stability
+
+The v1.0 stability contract holds: no flag shapes or JSON keys changed on existing commands. `reddi devvit` is a new top-level group with its own flags.
+
 ## [1.1.1] — 2026-05-10
 
 Documentation + ergonomics from real first-user setup experience.
@@ -95,6 +122,7 @@ Initial release.
 - `reddi status <url-or-id>` — vote/comment/removed-state for a post.
 - `reddi watch <url-or-id>` — live-updating dashboard for monitoring a launch.
 
+[1.2.0]: https://github.com/H-XX-D/reddi/releases/tag/v1.2.0
 [1.1.1]: https://github.com/H-XX-D/reddi/releases/tag/v1.1.1
 [1.1.0]: https://github.com/H-XX-D/reddi/releases/tag/v1.1.0
 [1.0.0]: https://github.com/H-XX-D/reddi/releases/tag/v1.0.0

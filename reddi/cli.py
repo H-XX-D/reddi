@@ -14,6 +14,7 @@ from .commands.auth_cmd import auth_group
 from .commands.comment import comment as comment_cmd
 from .commands.completion import completion as completion_cmd
 from .commands.crosspost import crosspost as crosspost_cmd
+from .commands.devvit import devvit_group
 from .commands.flairs import flairs as flairs_cmd
 from .commands.history import history as history_cmd
 from .commands.inbox import inbox_group
@@ -57,6 +58,7 @@ cli.add_command(auth_group)
 cli.add_command(comment_cmd)
 cli.add_command(completion_cmd)
 cli.add_command(crosspost_cmd)
+cli.add_command(devvit_group)
 cli.add_command(flairs_cmd)
 cli.add_command(history_cmd)
 cli.add_command(inbox_group)
