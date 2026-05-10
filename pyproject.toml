@@ -4,8 +4,8 @@ build-backend = "hatchling.build"
 
 [project]
 name = "reddi"
-version = "0.1.0"
-description = "A modern command-line client for Reddit. Submit posts, monitor stats, browse, all from your shell."
+version = "1.0.0"
+description = "A modern command-line client for Reddit. Built for the launch/monitor workflow: post, watch, reply, crosspost — from your shell."
 readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "MIT" }
@@ -14,7 +14,7 @@ authors = [
 ]
 keywords = ["reddit", "cli", "praw", "oauth"]
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 5 - Production/Stable",
     "Environment :: Console",
     "Intended Audience :: Developers",
     "Intended Audience :: End Users/Desktop",
