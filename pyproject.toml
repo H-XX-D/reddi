@@ -1,0 +1,61 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "redcli"
+version = "0.1.0"
+description = "A modern command-line client for Reddit. Submit posts, monitor stats, browse, all from your shell."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [
+    { name = "Todd Hendricks" },
+]
+keywords = ["reddit", "cli", "praw", "oauth"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Communications",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Utilities",
+]
+dependencies = [
+    "praw>=7.7.0",
+    "click>=8.1.0",
+    "rich>=13.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-mock>=3.10",
+    "ruff>=0.1.0",
+]
+
+[project.scripts]
+redcli = "redcli.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/H-XX-D/redcli"
+Repository = "https://github.com/H-XX-D/redcli"
+Issues = "https://github.com/H-XX-D/redcli/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["redcli"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "UP"]

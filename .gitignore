@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+build/
+dist/
+*.egg
+.venv/
+venv/
+env/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+
+# Test artifacts
+.coverage
+htmlcov/
+
+# Local credentials should NEVER be committed
+# (they live in ~/.config/redcli/, but belt-and-suspenders)
+credentials.json
+*.token
+.env
