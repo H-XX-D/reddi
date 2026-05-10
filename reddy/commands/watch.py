@@ -1,4 +1,4 @@
-"""`redcli watch` — live-update post stats."""
+"""`reddy watch` — live-update post stats."""
 
 from __future__ import annotations
 

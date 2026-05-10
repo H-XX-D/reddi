@@ -1,4 +1,4 @@
-"""redcli entry point.
+"""reddy entry point.
 
 The command surface intentionally mirrors `gh`'s ergonomics: top-level verbs
 (post, status, watch, me), with a separate `auth` group for credentials.
@@ -17,7 +17,7 @@ from .commands.watch import watch as watch_cmd
 
 
 @click.group()
-@click.version_option(version=__version__, prog_name="redcli")
+@click.version_option(version=__version__, prog_name="reddy")
 def cli() -> None:
     """A modern command-line client for Reddit.
 
@@ -26,15 +26,15 @@ def cli() -> None:
       \b
       1. Register an "installed app" at https://www.reddit.com/prefs/apps
          (redirect URI: http://localhost:16180/)
-      2. redcli auth login --client-id YOUR_CLIENT_ID
-      3. redcli me  # confirm it works
+      2. reddy auth login --client-id YOUR_CLIENT_ID
+      3. reddy me  # confirm it works
 
     Common workflows:
 
       \b
-      redcli post --sub SideProject --title "I built X" --body-file post.md
-      redcli status https://reddit.com/r/SideProject/comments/abc123/...
-      redcli watch  https://reddit.com/r/SideProject/comments/abc123/...
+      reddy post --sub SideProject --title "I built X" --body-file post.md
+      reddy status https://reddit.com/r/SideProject/comments/abc123/...
+      reddy watch  https://reddit.com/r/SideProject/comments/abc123/...
     """
 
 

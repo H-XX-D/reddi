@@ -1,4 +1,4 @@
-"""Allow `python -m redcli` invocation."""
+"""Allow `python -m reddy` invocation."""
 
 from .cli import main
 

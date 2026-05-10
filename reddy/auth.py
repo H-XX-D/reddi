@@ -5,7 +5,7 @@ needed, supports the full scope set, works for any user (not just the app
 registrant). We use the standard authorization-code flow with a one-shot local
 HTTP callback server, the same pattern `gh auth login` uses for GitHub.
 
-Credentials live at ~/.config/redcli/credentials.json with mode 0600.
+Credentials live at ~/.config/reddy/credentials.json with mode 0600.
 """
 
 from __future__ import annotations
@@ -24,7 +24,7 @@ from pathlib import Path
 import praw
 
 # Default scopes — broad enough to cover post/comment/read/inbox without being
-# greedy. Users can re-auth with custom scopes via `redcli auth login --scopes`.
+# greedy. Users can re-auth with custom scopes via `reddy auth login --scopes`.
 DEFAULT_SCOPES = [
     "identity",
     "submit",
@@ -38,8 +38,8 @@ DEFAULT_SCOPES = [
     "mysubreddits",
 ]
 
-USER_AGENT = "redcli/0.1 (by /u/redcli-user)"
-CONFIG_DIR = Path(os.environ.get("REDCLI_CONFIG_DIR", Path.home() / ".config" / "redcli"))
+USER_AGENT = "reddy/0.1 (by /u/reddy-user)"
+CONFIG_DIR = Path(os.environ.get("REDDY_CONFIG_DIR", Path.home() / ".config" / "reddy"))
 CREDENTIALS_PATH = CONFIG_DIR / "credentials.json"
 
 
@@ -86,7 +86,7 @@ def get_authed_reddit() -> praw.Reddit:
     creds = load_credentials()
     if creds is None:
         print(
-            "redcli is not authenticated. Run `redcli auth login` first.",
+            "reddy is not authenticated. Run `reddy auth login` first.",
             file=sys.stderr,
         )
         sys.exit(1)
@@ -116,7 +116,7 @@ class _OAuthCallbackHandler(http.server.BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(
                 b"<html><body style='font-family:system-ui;padding:40px;'>"
-                b"<h2>redcli authentication complete</h2>"
+                b"<h2>reddy authentication complete</h2>"
                 b"<p>You can close this tab and return to the terminal.</p>"
                 b"</body></html>"
             )
@@ -166,7 +166,7 @@ def login(client_id: str, scopes: list[str] | None = None, port: int = 16180) ->
     thread = threading.Thread(target=server.serve_forever, daemon=True)
     thread.start()
 
-    print("\nOpening browser to authorize redcli...")
+    print("\nOpening browser to authorize reddy...")
     print(f"If the browser doesn't open, visit:\n  {auth_url}\n")
     webbrowser.open(auth_url)
 

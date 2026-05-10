@@ -4,9 +4,9 @@ from __future__ import annotations
 
 from click.testing import CliRunner
 
-from redcli import __version__
-from redcli.cli import cli
-from redcli.commands.status import _extract_submission_id
+from reddy import __version__
+from reddy.cli import cli
+from reddy.commands.status import _extract_submission_id
 
 
 def test_version() -> None:

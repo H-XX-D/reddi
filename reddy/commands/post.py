@@ -1,4 +1,4 @@
-"""`redcli post` — submit a post to a subreddit."""
+"""`reddy post` — submit a post to a subreddit."""
 
 from __future__ import annotations
 
@@ -24,7 +24,7 @@ from .. import output as out
     help="Read post body from a Markdown file.",
 )
 @click.option("--url", help="If set, submit as a link post instead of a text post.")
-@click.option("--flair-id", help="Flair template ID (use `redcli flairs <sub>` to list).")
+@click.option("--flair-id", help="Flair template ID (use `reddy flairs <sub>` to list).")
 @click.option("--flair-text", help="Flair text override (if the sub allows free-form flair).")
 @click.option(
     "--nsfw/--no-nsfw",
@@ -65,9 +65,9 @@ def post(
 
     \b
     Examples:
-      redcli post --sub SideProject --title "I built X" --body-file post.md
-      redcli post --sub MacApps --title "[X] does Y" --url https://example.com
-      redcli post --sub test --title "smoke" --body "hello" --dry-run
+      reddy post --sub SideProject --title "I built X" --body-file post.md
+      reddy post --sub MacApps --title "[X] does Y" --url https://example.com
+      reddy post --sub test --title "smoke" --body "hello" --dry-run
     """
     if url and (body_text or body_file):
         out.err("--url is mutually exclusive with --body / --body-file")
