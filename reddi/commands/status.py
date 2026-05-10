@@ -1,4 +1,4 @@
-"""`reddy status` — show stats for a post URL."""
+"""`reddi status` — show stats for a post URL."""
 
 from __future__ import annotations
 
@@ -28,8 +28,8 @@ def status(post_url_or_id: str, as_json: bool) -> None:
     """Show vote/comment stats for a post.
 
     Accepts a full post URL or a bare ID:
-      reddy status https://reddit.com/r/SideProject/comments/abc123/...
-      reddy status abc123
+      reddi status https://reddit.com/r/SideProject/comments/abc123/...
+      reddi status abc123
     """
     sid = _extract_submission_id(post_url_or_id)
     reddit = auth.get_authed_reddit()

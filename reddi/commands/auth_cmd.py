@@ -1,4 +1,4 @@
-"""`reddy auth` command group."""
+"""`reddi auth` command group."""
 
 from __future__ import annotations
 
@@ -38,15 +38,15 @@ def login(client_id: str | None, port: int, scopes: tuple[str, ...]) -> None:
          (16180 is φ × 10000 — chosen to avoid 8080's collision-heavy
           territory. Use --port to pick a different one.)
       5. Copy the client ID (the string under the app name)
-      6. Run: reddy auth login --client-id YOUR_CLIENT_ID
+      6. Run: reddi auth login --client-id YOUR_CLIENT_ID
 
     The client ID is not a secret. The OAuth flow happens entirely in your
-    browser. reddy stores only a refresh token at ~/.config/reddy/credentials.json
+    browser. reddi stores only a refresh token at ~/.config/reddi/credentials.json
     """
     if not client_id:
         out.err(
             "No client ID provided. Pass --client-id, set REDDIT_CLIENT_ID, "
-            "or see `reddy auth login --help` for setup instructions."
+            "or see `reddi auth login --help` for setup instructions."
         )
         raise SystemExit(2)
 
@@ -70,7 +70,7 @@ def status(as_json: bool) -> None:
     """Show current auth state."""
     creds = auth.load_credentials()
     if creds is None:
-        out.console.print("[yellow]not authenticated[/yellow] — run `reddy auth login`")
+        out.console.print("[yellow]not authenticated[/yellow] — run `reddi auth login`")
         raise SystemExit(1)
     out.emit(
         {

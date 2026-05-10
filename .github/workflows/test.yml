@@ -22,6 +22,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -e ".[dev]"
       - name: Lint
-        run: ruff check reddy tests
+        run: ruff check reddi tests
       - name: Test
         run: pytest -v

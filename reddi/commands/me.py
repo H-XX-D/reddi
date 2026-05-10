@@ -1,4 +1,4 @@
-"""`reddy me` — show authenticated account info."""
+"""`reddi me` — show authenticated account info."""
 
 from __future__ import annotations
 
@@ -15,7 +15,7 @@ def me(as_json: bool) -> None:
     reddit = auth.get_authed_reddit()
     user = reddit.user.me()
     if user is None:
-        out.err("Could not fetch user — token may be invalid. Try `reddy auth login` again.")
+        out.err("Could not fetch user — token may be invalid. Try `reddi auth login` again.")
         raise SystemExit(1)
 
     data = {

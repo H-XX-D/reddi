@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "reddy"
+name = "reddi"
 version = "0.1.0"
 description = "A modern command-line client for Reddit. Submit posts, monitor stats, browse, all from your shell."
 readme = "README.md"
@@ -43,15 +43,15 @@ dev = [
 ]
 
 [project.scripts]
-reddy = "reddy.cli:main"
+reddi = "reddi.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/H-XX-D/reddy"
-Repository = "https://github.com/H-XX-D/reddy"
-Issues = "https://github.com/H-XX-D/reddy/issues"
+Homepage = "https://github.com/H-XX-D/reddi"
+Repository = "https://github.com/H-XX-D/reddi"
+Issues = "https://github.com/H-XX-D/reddi/issues"
 
 [tool.hatch.build.targets.wheel]
-packages = ["reddy"]
+packages = ["reddi"]
 
 [tool.ruff]
 line-length = 100
