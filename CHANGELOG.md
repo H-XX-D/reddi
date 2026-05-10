@@ -2,6 +2,26 @@
 
 All notable changes to `reddi` are documented here. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and `reddi` adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.1.1] — 2026-05-10
+
+Documentation + ergonomics from real first-user setup experience.
+
+### Added
+
+- `reddi auth login --host HOST` — override the OAuth callback host (default still `localhost`). Use `--host 127.0.0.1` when Reddit rejects `localhost` redirect URIs (some account vintages hit a "non-localhost URL" policy check that 127.0.0.1 passes universally).
+
+### Changed
+
+- README "First-time setup" section dramatically expanded into a real walk-through with:
+  - **Pre-flight checks** for Reddit account requirements (email verification, account standing, phone verification)
+  - **Step-by-step app registration** with screenshot-worthy field-by-field guidance
+  - **Comprehensive troubleshooting section** covering the Responsible Builder Policy banner, redirect-URI mismatches, missing "create app" button, and the Devvit-vs-classic-OAuth confusion
+  - Recommended default is now `http://127.0.0.1:16180/` instead of `localhost` — universally accepted by Reddit's validator
+
+### Why
+
+A real first-time-user run through Reddit's developer surface in May 2026 revealed multiple non-obvious blockers: the Responsible Builder Policy gate, intermittent localhost rejection, and the Devvit-vs-classic-OAuth surface confusion. The previous setup docs assumed a happy path; this revision documents every gate we actually encountered.
+
 ## [1.1.0] — 2026-05-10
 
 The "efficiency amplifier" release. Five new commands designed around the insight that reddi's value isn't "another Reddit CLI" — it's making the Reddit launch/monitor loop substantially faster than the browser.
@@ -75,6 +95,7 @@ Initial release.
 - `reddi status <url-or-id>` — vote/comment/removed-state for a post.
 - `reddi watch <url-or-id>` — live-updating dashboard for monitoring a launch.
 
+[1.1.1]: https://github.com/H-XX-D/reddi/releases/tag/v1.1.1
 [1.1.0]: https://github.com/H-XX-D/reddi/releases/tag/v1.1.0
 [1.0.0]: https://github.com/H-XX-D/reddi/releases/tag/v1.0.0
 [0.1.0]: https://github.com/H-XX-D/reddi/releases/tag/v0.1.0
